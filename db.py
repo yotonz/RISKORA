@@ -11,7 +11,8 @@ LEGACY_USER_DB = os.path.join(_BASE, "users.json")
 
 
 def connect():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=20)
+    conn.execute("PRAGMA journal_mode=WAL")
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -121,22 +122,22 @@ def get_all_users():
 
 
 def add_user(username, password, role="user", already_hashed=False):
-    if get_user(username):
-        return False
-
     stored_password = password if already_hashed else hash_password(password)
     conn = connect()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        INSERT INTO users (username, password, role, created_at)
-        VALUES (?, ?, ?, ?)
-        """,
-        (username, stored_password, role, datetime.utcnow().isoformat()),
-    )
-    conn.commit()
-    conn.close()
-    return True
+    try:
+        conn.execute(
+            """
+            INSERT INTO users (username, password, role, created_at)
+            VALUES (?, ?, ?, ?)
+            """,
+            (username, stored_password, role, datetime.utcnow().isoformat()),
+        )
+        conn.commit()
+        return True
+    except sqlite3.IntegrityError:
+        return False
+    finally:
+        conn.close()
 
 
 def validate_login(username, password):
