@@ -1347,7 +1347,7 @@ def show_landing():
     <div class="team-row" style="justify-content:center;gap:40px">
         <div class="team-card">
             <div class="team-ring team-ring-c">
-                <img src="https://i.ibb.co/WWf7yDdg/Whats-App-Image-2026-05-10-at-10-27-51-PM.jpg" class="team-img" alt="Mahitha J H"/>
+                <img src="https://i.ibb.co/7sdd2w8/Whats-App-Image-2026-05-12-at-8-45-18-AM.jpg" class="team-img" alt="Mahitha J H"/>
             </div>
             <div class="team-name">Mahitha J H</div>
             <div class="team-role-lbl">Developer</div>
@@ -1361,7 +1361,7 @@ def show_landing():
         </div>
         <div class="team-card">
             <div class="team-ring team-ring-t">
-                <img src="https://i.ibb.co/m511tbbW/Whats-App-Image-2026-05-10-at-10-27-51-PM-1.jpg" class="team-img" alt="Devika S Prasad"/>
+                <img src="https://i.ibb.co/wZggyw0C/Whats-App-Image-2026-05-12-at-8-47-15-AM.jpg" class="team-img" alt="Devika S Prasad"/>
             </div>
             <div class="team-name">Devika S Prasad</div>
             <div class="team-role-lbl">Developer</div>
