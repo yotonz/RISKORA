@@ -312,6 +312,8 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 if "auth_tab" not in st.session_state:
     st.session_state.auth_tab = "login"
+if "page" not in st.session_state:
+    st.session_state.page = "landing"
 
 st.set_page_config(
     page_title=f"{APP_NAME} — Credit Risk Intelligence",
@@ -883,6 +885,221 @@ label{{color:#94a3b8!important;font-size:13px!important;font-weight:500!importan
 .art-tag-c{{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#00d4ff;}}
 .art-tag-p{{background:rgba(147,51,234,.12);border:1px solid rgba(147,51,234,.35);color:#c084fc;}}
 .art-tag-g{{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.28);color:#22c55e;}}
+
+/* ══ LANDING PAGE ══ */
+.landing-hero{{
+    text-align:center;padding:80px 40px 60px;
+    position:relative;overflow:hidden;
+}}
+.landing-badge{{
+    display:inline-flex;align-items:center;gap:8px;
+    background:linear-gradient(135deg,rgba(147,51,234,.18),rgba(0,212,255,.08));
+    border:1px solid rgba(147,51,234,.4);border-radius:50px;
+    padding:8px 22px;font-size:11px;font-weight:700;letter-spacing:3px;
+    color:#c084fc;text-transform:uppercase;margin-bottom:28px;
+    animation:glow-pulse 3s ease-in-out infinite;
+}}
+.landing-title{{
+    font-family:'Orbitron','Inter',sans-serif;font-size:clamp(48px,7vw,88px);font-weight:900;
+    line-height:1.05;margin-bottom:20px;letter-spacing:-1px;
+    background:linear-gradient(135deg,#ffffff 0%,#c084fc 40%,#00d4ff 80%,#ec4899 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    animation:fade-up .7s ease both;
+}}
+.landing-tagline{{
+    font-size:clamp(16px,2.2vw,22px);font-weight:500;color:#64748b;
+    margin-bottom:16px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto;
+    animation:fade-up .8s ease .1s both;
+}}
+.landing-desc{{
+    font-size:15px;color:#475569;line-height:1.8;
+    max-width:520px;margin:0 auto 40px;animation:fade-up .9s ease .2s both;
+}}
+.landing-cta-row{{
+    display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+    margin-bottom:60px;animation:fade-up 1s ease .3s both;
+}}
+.landing-cta-primary{{
+    display:inline-flex;align-items:center;gap:10px;
+    background:linear-gradient(135deg,#7c3aed,#0891b2);
+    color:#fff;font-size:16px;font-weight:700;
+    padding:16px 36px;border-radius:50px;border:none;cursor:pointer;
+    box-shadow:0 0 32px rgba(147,51,234,.5),0 8px 24px rgba(0,0,0,.4);
+    transition:all .25s;text-decoration:none;letter-spacing:.5px;
+}}
+.landing-cta-primary:hover{{
+    background:linear-gradient(135deg,#9333ea,#06b6d4);
+    box-shadow:0 0 55px rgba(147,51,234,.7),0 12px 32px rgba(0,0,0,.5);
+    transform:translateY(-3px);
+}}
+.landing-cta-secondary{{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.04);border:1px solid rgba(147,51,234,.3);
+    color:#94a3b8;font-size:16px;font-weight:600;
+    padding:16px 36px;border-radius:50px;cursor:pointer;
+    transition:all .25s;text-decoration:none;
+}}
+.landing-cta-secondary:hover{{
+    background:rgba(147,51,234,.1);border-color:rgba(147,51,234,.6);color:#e2e8f0;
+    transform:translateY(-3px);
+}}
+.landing-stats-bar{{
+    display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+    background:rgba(255,255,255,.02);border:1px solid rgba(147,51,234,.14);
+    border-radius:20px;padding:0;margin:0 auto 64px;max-width:760px;overflow:hidden;
+}}
+.ls-stat{{
+    flex:1;min-width:160px;padding:24px 20px;text-align:center;
+    border-right:1px solid rgba(147,51,234,.1);position:relative;
+}}
+.ls-stat:last-child{{border-right:none;}}
+.ls-stat::before{{
+    content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:60%;height:2px;background:linear-gradient(90deg,transparent,#9333ea,transparent);
+}}
+.ls-num{{font-size:32px;font-weight:900;color:#fff;line-height:1;}}
+.ls-lbl{{font-size:11px;color:#475569;margin-top:6px;letter-spacing:.5px;}}
+.landing-section-label{{
+    font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;
+    color:#9333ea;text-align:center;margin-bottom:16px;
+}}
+.landing-section-title{{
+    font-size:clamp(26px,3.5vw,38px);font-weight:800;text-align:center;
+    color:#f1f5f9;margin-bottom:10px;line-height:1.2;
+}}
+.landing-section-sub{{
+    font-size:15px;color:#475569;text-align:center;
+    max-width:500px;margin:0 auto 48px;line-height:1.7;
+}}
+.l-feat-card{{
+    background:rgba(255,255,255,.025);border:1px solid rgba(147,51,234,.12);
+    border-radius:22px;padding:30px 26px;height:100%;
+    position:relative;overflow:hidden;transition:all .3s;
+}}
+.l-feat-card::before{{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    opacity:0;transition:opacity .3s;
+}}
+.l-feat-card:hover{{
+    border-color:rgba(147,51,234,.38);
+    box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 30px rgba(147,51,234,.08);
+    transform:translateY(-5px);
+}}
+.l-feat-card:hover::before{{opacity:1;}}
+.l-feat-icon{{
+    width:54px;height:54px;border-radius:16px;
+    display:flex;align-items:center;justify-content:center;font-size:24px;
+    margin-bottom:18px;
+}}
+.l-feat-title{{font-size:18px;font-weight:700;color:#f1f5f9;margin-bottom:10px;}}
+.l-feat-desc{{font-size:14px;color:#64748b;line-height:1.7;}}
+.how-it-works-wrap{{
+    display:flex;align-items:flex-start;gap:0;
+    max-width:820px;margin:0 auto;
+}}
+.hiw-step{{
+    flex:1;text-align:center;padding:0 16px;
+}}
+.hiw-num{{
+    width:52px;height:52px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:900;margin:0 auto 16px;
+}}
+.hiw-num-1{{background:linear-gradient(135deg,rgba(99,102,241,.3),rgba(99,102,241,.1));border:2px solid rgba(99,102,241,.5);color:#818cf8;box-shadow:0 0 18px rgba(99,102,241,.3);}}
+.hiw-num-2{{background:linear-gradient(135deg,rgba(147,51,234,.3),rgba(147,51,234,.1));border:2px solid rgba(147,51,234,.5);color:#c084fc;box-shadow:0 0 18px rgba(147,51,234,.3);}}
+.hiw-num-3{{background:linear-gradient(135deg,rgba(0,212,255,.25),rgba(0,212,255,.08));border:2px solid rgba(0,212,255,.45);color:#00d4ff;box-shadow:0 0 18px rgba(0,212,255,.25);}}
+.hiw-title{{font-size:16px;font-weight:700;color:#e2e8f0;margin-bottom:8px;}}
+.hiw-desc{{font-size:13px;color:#475569;line-height:1.65;}}
+.hiw-arrow{{
+    flex:none;width:48px;display:flex;align-items:flex-start;
+    justify-content:center;padding-top:26px;font-size:22px;
+    color:rgba(147,51,234,.35);
+}}
+.landing-preview-wrap{{
+    max-width:680px;margin:0 auto;
+    background:linear-gradient(135deg,rgba(10,2,25,.97),rgba(6,1,15,.95));
+    border-radius:24px;padding:28px 32px;
+    border:1px solid rgba(147,51,234,.3);
+    box-shadow:0 0 60px rgba(147,51,234,.18),0 40px 80px rgba(0,0,0,.6);
+    position:relative;overflow:hidden;
+}}
+.landing-preview-wrap::before{{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,#9333ea,#00d4ff,#ec4899,transparent);
+    animation:shimmer 3s linear infinite;background-size:200% 100%;
+}}
+.lpv-head{{font-size:12px;letter-spacing:2px;color:#334155;text-transform:uppercase;font-weight:700;margin-bottom:16px;}}
+.lpv-row{{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;}}
+.lpv-name{{font-size:17px;font-weight:700;color:#e2e8f0;}}
+.lpv-badge{{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);border-radius:50px;padding:4px 16px;font-size:12px;font-weight:700;color:#22c55e;}}
+.lpv-metrics{{display:flex;gap:24px;flex-wrap:wrap;}}
+.lpv-m-val{{font-size:22px;font-weight:800;line-height:1;}}
+.lpv-m-lbl{{font-size:10px;color:#475569;margin-top:4px;}}
+.landing-footer{{
+    text-align:center;padding:48px 40px 32px;
+    border-top:1px solid rgba(147,51,234,.1);margin-top:40px;
+}}
+.lf-links{{display:flex;gap:32px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;}}
+.lf-link{{font-size:13px;color:#475569;cursor:default;transition:color .2s;}}
+.lf-link:hover{{color:#c084fc;}}
+.lf-copy{{font-size:12px;color:#1e293b;}}
+
+/* ══ AUTH PAGE (CENTERED) ══ */
+.auth-center-wrap{{
+    display:flex;align-items:center;justify-content:center;
+    min-height:100vh;padding:20px;
+}}
+.auth-center-card{{
+    background:linear-gradient(160deg,rgba(20,5,40,.96),rgba(8,1,20,.96));
+    backdrop-filter:blur(40px);
+    border-radius:28px;padding:40px 44px;
+    border:1px solid rgba(147,51,234,.35);
+    box-shadow:
+        0 0 0 1px rgba(0,212,255,.06),
+        0 0 80px rgba(147,51,234,.22),
+        0 40px 100px rgba(0,0,0,.8),
+        inset 0 1px 0 rgba(255,255,255,.06);
+    position:relative;overflow:hidden;
+    width:100%;max-width:460px;
+    animation:fade-up .5s ease both;
+}}
+.auth-center-card::before{{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent 0%,#9333ea 30%,#00d4ff 60%,#ec4899 80%,transparent 100%);
+    animation:shimmer 3s linear infinite;background-size:200% 100%;
+}}
+.acc-logo-row{{
+    display:flex;flex-direction:column;align-items:center;margin-bottom:28px;
+}}
+.acc-icon{{
+    width:64px;height:64px;border-radius:20px;
+    background:linear-gradient(135deg,#9333ea,#00d4ff);
+    display:flex;align-items:center;justify-content:center;font-size:28px;
+    box-shadow:0 0 32px rgba(147,51,234,.55),0 0 64px rgba(0,212,255,.2);
+    animation:glow-pulse 3s ease-in-out infinite;margin-bottom:16px;
+}}
+.acc-name{{
+    font-family:'Orbitron',sans-serif;font-size:26px;font-weight:900;
+    background:linear-gradient(135deg,#fff,#c084fc,#00d4ff);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    letter-spacing:2px;
+}}
+.acc-sub{{font-size:12px;color:#334155;letter-spacing:2px;text-transform:uppercase;margin-top:4px;}}
+.acc-divider{{height:1px;background:linear-gradient(90deg,transparent,rgba(147,51,234,.3),rgba(0,212,255,.2),transparent);margin:0 0 24px;}}
+.acc-form-title{{font-size:22px;font-weight:800;color:#f1f5f9;margin-bottom:4px;}}
+.acc-form-sub{{font-size:13px;color:#475569;margin-bottom:20px;}}
+.acc-back{{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:12px;color:#334155;cursor:pointer;
+    transition:color .2s;margin-bottom:20px;
+    background:none;border:none;padding:0;
+}}
+.acc-back:hover{{color:#c084fc;}}
+.acc-secure{{
+    text-align:center;margin-top:20px;padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.04);
+    font-size:11px;color:#1e293b;
+}}
 </style>
 """, unsafe_allow_html=True)
 
@@ -914,272 +1131,391 @@ def _style_ax(ax):
 
 
 # ══════════════════════════════════════════════════════════════════════════════
-# AUTH PAGE  —  split-panel design
+# LANDING PAGE  —  full-screen marketing hero
 # ══════════════════════════════════════════════════════════════════════════════
-def show_auth_pages():
-    # ── Sidebar: capability list ───────────────────────────────────────────────
-    st.sidebar.html(f"""
-    <div style="padding:24px 4px 20px">
-        <div class="sb-logo">{APP_SHORT}</div>
-        <div class="sb-logo-sub">AI Risk Intelligence</div>
+def show_landing():
+    st.markdown("""
+<style>
+[data-testid="stSidebar"]{display:none!important;}
+[data-testid="stSidebarCollapsedControl"]{display:none!important;}
+.block-container{padding-top:0!important;padding-left:0!important;padding-right:0!important;max-width:100%!important;}
+</style>""", unsafe_allow_html=True)
+
+    # ── HERO ──────────────────────────────────────────────────────────────────
+    st.html(f"""
+<div class="landing-hero">
+    <div class="landing-badge">✦ &nbsp; AI-POWERED CREDIT INTELLIGENCE &nbsp; ✦</div>
+    <div class="landing-title">{APP_SHORT}<br><span style="font-size:.62em;letter-spacing:4px">AI</span></div>
+    <div class="landing-tagline">{APP_TAGLINE}</div>
+    <div class="landing-desc">
+        Instantly evaluate loan applications using a trained Random Forest AI model and a
+        financial rule engine — delivering explainable <b style="color:#ef4444">HIGH</b> /
+        <b style="color:#22c55e">LOW</b> risk verdicts in milliseconds.
+        Built for banks, NBFCs, and credit professionals.
     </div>
-    <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(147,51,234,.3),transparent);margin-bottom:20px"></div>
-    <div style="font-size:12px;color:#334155;line-height:2;padding:0 4px">
-        ⚡ Instant AI risk scoring<br>
-        🤖 Random Forest ML model<br>
-        📊 DTI &amp; credit analysis<br>
-        🧮 EMI amortization<br>
-        🔒 PBKDF2-SHA256 encryption<br>
-        📈 Trend &amp; regression analytics<br>
-        🤝 Explainable AI chatbot<br>
-        🛡️ Role-based access control
+</div>
+""")
+
+    # CTA Buttons
+    _, c1, gap, c2, _ = st.columns([2, 1.5, 0.15, 1.5, 2])
+    with c1:
+        if st.button("🚀  Get Started  →", key="hero_cta", use_container_width=True):
+            st.session_state.page = "auth"
+            st.rerun()
+    with c2:
+        st.markdown('<div style="height:8px"></div>', unsafe_allow_html=True)
+
+    st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
+
+    # ── STATS BAR ─────────────────────────────────────────────────────────────
+    from db import get_application_stats
+    stats = get_application_stats()
+    total_apps = stats["total_applications"]
+    high_risk  = stats["high_risk_count"]
+    total_usr  = stats["total_users"]
+    high_pct   = (high_risk / total_apps * 100) if total_apps else 0.0
+
+    st.html(f"""
+<div style="max-width:820px;margin:0 auto 64px;padding:0 24px">
+<div class="landing-stats-bar">
+    <div class="ls-stat">
+        <div class="ls-num">{total_usr:,}</div>
+        <div class="ls-lbl">Registered Users</div>
     </div>
-    <div style="margin-top:28px;padding:12px 10px;background:rgba(147,51,234,.07);border:1px solid rgba(147,51,234,.18);border-radius:12px">
-        <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:#9333ea;text-transform:uppercase;margin-bottom:6px">Who is this for?</div>
-        <div style="font-size:11px;color:#475569;line-height:1.8">
-            Loan officers · Banks · NBFCs · Credit analysts · Fintech startups
+    <div class="ls-stat">
+        <div class="ls-num">{total_apps:,}</div>
+        <div class="ls-lbl">Applications Processed</div>
+    </div>
+    <div class="ls-stat">
+        <div class="ls-num">{high_pct:.1f}%</div>
+        <div class="ls-lbl">High Risk Rate</div>
+    </div>
+    <div class="ls-stat">
+        <div class="ls-num">100</div>
+        <div class="ls-lbl">ML Trees in Model</div>
+    </div>
+</div>
+</div>
+""")
+
+    # ── FEATURES ──────────────────────────────────────────────────────────────
+    st.html("""
+<div style="text-align:center;margin-bottom:40px;padding:0 24px">
+    <div class="landing-section-label">What We Offer</div>
+    <div class="landing-section-title">Everything you need to<br>assess credit risk</div>
+    <div class="landing-section-sub">A complete platform combining machine learning, financial analytics, and secure data management.</div>
+</div>
+""")
+
+    features = [
+        ("🤖", "linear-gradient(135deg,rgba(0,212,255,.22),rgba(0,212,255,.06))",
+         "linear-gradient(90deg,#00d4ff,#6366f1)",
+         "AI Prediction Engine",
+         "Random Forest Classifier with 100 decision trees trained on financial patterns. Predicts loan risk with cross-validated accuracy using 5 key features."),
+        ("📊", "linear-gradient(135deg,rgba(147,51,234,.22),rgba(147,51,234,.06))",
+         "linear-gradient(90deg,#9333ea,#ec4899)",
+         "Financial Analytics",
+         "Real-time DTI ratio, credit score bands, loan-to-income ratios, score trends and regression analytics — all visualized in interactive dashboards."),
+        ("🧮", "linear-gradient(135deg,rgba(20,184,166,.18),rgba(20,184,166,.05))",
+         "linear-gradient(90deg,#14b8a6,#22c55e)",
+         "EMI Calculator",
+         "Full amortization schedules, principal vs interest breakdowns, balance projections and interactive charts. Plan repayments with precision."),
+        ("🤝", "linear-gradient(135deg,rgba(99,102,241,.2),rgba(99,102,241,.06))",
+         "linear-gradient(90deg,#6366f1,#a855f7)",
+         "AI Chat Assistant",
+         "Conversational risk explainer with context-aware answers. Understand exactly why a decision was made and what can be improved."),
+        ("📈", "linear-gradient(135deg,rgba(245,158,11,.18),rgba(245,158,11,.05))",
+         "linear-gradient(90deg,#f59e0b,#ef4444)",
+         "Trend Analytics",
+         "Risk distribution charts, income vs loan regression, score histograms, DTI trends, and downloadable CSV exports for audit trails."),
+        ("🔒", "linear-gradient(135deg,rgba(34,197,94,.16),rgba(34,197,94,.04))",
+         "linear-gradient(90deg,#22c55e,#06b6d4)",
+         "Bank-grade Security",
+         "PBKDF2-SHA256 password hashing with 100,000 iterations, parameterized SQL queries preventing injection, and role-based access control."),
+    ]
+
+    r1 = st.columns(3, gap="large")
+    r2 = st.columns(3, gap="large")
+    st.markdown('<div style="padding:0 24px">', unsafe_allow_html=True)
+    for col, (icon, icon_bg, bar_grad, title, desc) in zip(r1 + r2, features):
+        with col:
+            st.html(f"""
+<div class="l-feat-card" style="margin-bottom:20px">
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:{bar_grad};opacity:0;transition:opacity .3s" class="card-top-bar"></div>
+    <div class="l-feat-icon" style="background:{icon_bg}">{icon}</div>
+    <div class="l-feat-title">{title}</div>
+    <div class="l-feat-desc">{desc}</div>
+</div>
+""")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+    st.markdown("<div style='height:24px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+    # ── HOW IT WORKS ──────────────────────────────────────────────────────────
+    st.html("""
+<div style="text-align:center;margin-bottom:40px;padding:0 24px">
+    <div class="landing-section-label">The Process</div>
+    <div class="landing-section-title">From application to verdict<br>in seconds</div>
+    <div class="landing-section-sub">Three simple steps powered by AI, financial rules, and real-time computation.</div>
+</div>
+<div class="how-it-works-wrap" style="padding:0 24px">
+    <div class="hiw-step">
+        <div class="hiw-num hiw-num-1">1</div>
+        <div class="hiw-title">Enter Details</div>
+        <div class="hiw-desc">Provide applicant age, annual income, loan amount, credit score, and monthly EMI through our structured form.</div>
+    </div>
+    <div class="hiw-arrow">→</div>
+    <div class="hiw-step">
+        <div class="hiw-num hiw-num-2">2</div>
+        <div class="hiw-title">AI Analyzes</div>
+        <div class="hiw-desc">Random Forest ML model runs in parallel with a rule engine — evaluating DTI ratios, credit bands, and loan-to-income multiples.</div>
+    </div>
+    <div class="hiw-arrow">→</div>
+    <div class="hiw-step">
+        <div class="hiw-num hiw-num-3">3</div>
+        <div class="hiw-title">Get Verdict</div>
+        <div class="hiw-desc">Receive a clear HIGH / LOW risk decision with full reasoning, financial score out of 100, and improvement recommendations.</div>
+    </div>
+</div>
+""")
+
+    st.markdown("<div style='height:64px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+    # ── SAMPLE OUTPUT ─────────────────────────────────────────────────────────
+    st.html("""
+<div style="text-align:center;margin-bottom:40px;padding:0 24px">
+    <div class="landing-section-label">Live Preview</div>
+    <div class="landing-section-title">See what a real assessment looks like</div>
+</div>
+""")
+
+    _, prev_col, _ = st.columns([1.5, 5, 1.5])
+    with prev_col:
+        st.html("""
+<div class="landing-preview-wrap">
+    <div class="lpv-head">⟡ &nbsp; SAMPLE ASSESSMENT OUTPUT &nbsp; ⟡</div>
+    <div class="lpv-row">
+        <div class="lpv-name">Ravi Sharma &nbsp;·&nbsp; Home Loan &nbsp;·&nbsp; ₹35,00,000</div>
+        <div class="lpv-badge">✓ LOW RISK</div>
+    </div>
+    <div class="lpv-metrics">
+        <div>
+            <div class="lpv-m-val" style="color:#a855f7">82<span style="font-size:14px;color:#475569">/100</span></div>
+            <div class="lpv-m-lbl">Financial Score</div>
+        </div>
+        <div>
+            <div class="lpv-m-val" style="color:#00d4ff">740</div>
+            <div class="lpv-m-lbl">Credit Score</div>
+        </div>
+        <div>
+            <div class="lpv-m-val" style="color:#2dd4bf">22.4%</div>
+            <div class="lpv-m-lbl">DTI Ratio</div>
+        </div>
+        <div>
+            <div class="lpv-m-val" style="color:#fbbf24">2.1×</div>
+            <div class="lpv-m-lbl">Loan / Income</div>
+        </div>
+        <div>
+            <div class="lpv-m-val" style="color:#818cf8">₹28,500</div>
+            <div class="lpv-m-lbl">Monthly EMI</div>
         </div>
     </div>
-    """)
-
-    # ── Layout: left showcase / right auth card ────────────────────────────────
-    left, _, right = st.columns([5.5, 0.2, 4.3])
-
-    # ─── LEFT PANEL ───────────────────────────────────────────────────────────
-    with left:
-        st.html(f"""
-        <div class="auth-hero">
-
-            <div class="brand-wordmark">
-                <div class="brand-icon-wrap">🔮</div>
-                <div>
-                    <div class="brand-name-text">{APP_SHORT}</div>
-                    <div class="brand-tag">AI Credit Intelligence</div>
-                </div>
-            </div>
-
-            <div class="hero-tagline">{APP_TAGLINE}</div>
-            <div class="hero-desc">
-                {APP_NAME} uses a trained Machine Learning model and a financial
-                rule engine to assess loan applications instantly — giving lenders
-                a clear, explainable HIGH or LOW risk verdict with full reasoning.
-                Built for banks, NBFCs and credit professionals.
-            </div>
-
-            <div class="feat-grid">
-                <div class="feat-item feat-c">
-                    <div class="feat-item-icon">🤖</div>
-                    <div class="feat-item-title">AI Risk Analysis</div>
-                    <div class="feat-item-desc">Random Forest predicts HIGH / LOW risk from 5 financial inputs</div>
-                </div>
-                <div class="feat-item feat-p">
-                    <div class="feat-item-icon">📊</div>
-                    <div class="feat-item-title">Financial Scoring</div>
-                    <div class="feat-item-desc">100-point score based on DTI and credit score bands</div>
-                </div>
-                <div class="feat-item feat-t">
-                    <div class="feat-item-icon">🧮</div>
-                    <div class="feat-item-title">EMI Calculator</div>
-                    <div class="feat-item-desc">Amortization tables, pie charts and balance projections</div>
-                </div>
-                <div class="feat-item feat-i">
-                    <div class="feat-item-icon">🤝</div>
-                    <div class="feat-item-title">AI Assistant</div>
-                    <div class="feat-item-desc">Chat-based explainer with improvement recommendations</div>
-                </div>
-                <div class="feat-item feat-a">
-                    <div class="feat-item-icon">📈</div>
-                    <div class="feat-item-title">Analytics</div>
-                    <div class="feat-item-desc">Score trends, risk distribution and regression charts</div>
-                </div>
-                <div class="feat-item feat-e">
-                    <div class="feat-item-icon">🔒</div>
-                    <div class="feat-item-title">Secure by Design</div>
-                    <div class="feat-item-desc">PBKDF2 hashing, parameterized SQL, role-based access</div>
-                </div>
-            </div>
-
-            <div class="how-label">How It Works</div>
-            <div class="how-steps">
-                <div class="how-step">
-                    <div class="step-num-c step-num-1">1</div>
-                    <div class="how-step-title">Enter Details</div>
-                    <div class="how-step-desc">Age, income, loan, credit score, monthly EMI</div>
-                </div>
-                <div class="how-arrow">→</div>
-                <div class="how-step">
-                    <div class="step-num-c step-num-2">2</div>
-                    <div class="how-step-title">AI Analyzes</div>
-                    <div class="how-step-desc">ML model + rule engine in milliseconds</div>
-                </div>
-                <div class="how-arrow">→</div>
-                <div class="how-step">
-                    <div class="step-num-c step-num-3">3</div>
-                    <div class="how-step-title">Get Decision</div>
-                    <div class="how-step-desc">Clear HIGH / LOW verdict with full explanation</div>
-                </div>
-            </div>
-
-            <div class="preview-card">
-                <div class="preview-name-row">
-                    <div class="preview-name">Ravi Sharma &nbsp;·&nbsp; Home Loan</div>
-                    <div class="p-low">LOW RISK ✓</div>
-                </div>
-                <div class="preview-stats">
-                    <div><div class="ps-val" style="color:#a855f7">82</div><div class="ps-lbl">Score /100</div></div>
-                    <div><div class="ps-val" style="color:#00d4ff">740</div><div class="ps-lbl">Credit Score</div></div>
-                    <div><div class="ps-val" style="color:#2dd4bf">22.4%</div><div class="ps-lbl">DTI Ratio</div></div>
-                    <div><div class="ps-val" style="color:#fbbf24">2.1×</div><div class="ps-lbl">Loan/Income</div></div>
-                </div>
-            </div>
-
-            <div class="trust-row">
-                <span class="tb-c">⚡ ML Powered</span>
-                <span class="tb-p">🧠 Explainable AI</span>
-                <span class="tb-g">🔒 Bank-grade Security</span>
-                <span class="tb-a">📊 Real-time Analytics</span>
-            </div>
-
+    <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(147,51,234,.12)">
+        <div style="font-size:11px;color:#334155;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px">Analysis Reasoning</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:50px;padding:3px 12px;font-size:11px;color:#22c55e">✓ Credit score 700+ (Very Good)</span>
+            <span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:50px;padding:3px 12px;font-size:11px;color:#22c55e">✓ DTI under 30% (Excellent)</span>
+            <span style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);border-radius:50px;padding:3px 12px;font-size:11px;color:#22c55e">✓ Loan within 3× income</span>
+            <span style="background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.22);border-radius:50px;padding:3px 12px;font-size:11px;color:#38bdf8">ML Model: LOW (conf. 94%)</span>
         </div>
-        """)
+    </div>
+</div>
+""")
 
-    # ─── RIGHT PANEL: Auth card ───────────────────────────────────────────────
-    with right:
-        st.html(f"""
-        <div class="auth-card">
-            <div class="auth-brand-row">
-                <div class="auth-icon">🔮</div>
-                <div class="auth-brand-name">{APP_SHORT}</div>
+    st.markdown("<div style='height:64px'></div>", unsafe_allow_html=True)
+    st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+
+    # ── TEAM ──────────────────────────────────────────────────────────────────
+    st.html("""
+<div style="text-align:center;margin-bottom:40px;padding:0 24px">
+    <div class="landing-section-label">The Team</div>
+    <div class="landing-section-title">Built by passionate developers</div>
+</div>
+<div class="team-section" style="border-top:none;margin-top:0;padding-top:0">
+    <div class="team-row" style="justify-content:center;gap:40px">
+        <div class="team-card">
+            <div class="team-ring team-ring-c">
+                <img src="https://i.ibb.co/WWf7yDdg/Whats-App-Image-2026-05-10-at-10-27-51-PM.jpg" class="team-img" alt="Mahitha J H"/>
             </div>
-            <div class="auth-divider"></div>
+            <div class="team-name">Mahitha J H</div>
+            <div class="team-role-lbl">Developer</div>
         </div>
-        """)
-
-        # Tab toggle using session state (avoids st.tabs inside custom div issues)
-        ta, tb = st.columns(2, gap="small")
-        is_login  = st.session_state.auth_tab == "login"
-        is_signup = st.session_state.auth_tab == "signup"
-
-        with ta:
-            st.markdown(f'<div class="{"auth-tab-active" if is_login else "auth-tab-inactive"}">', unsafe_allow_html=True)
-            if st.button("🔑  Login", key="tab_login_btn"):
-                st.session_state.auth_tab = "login"
-                st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        with tb:
-            st.markdown(f'<div class="{"auth-tab-active" if is_signup else "auth-tab-inactive"}">', unsafe_allow_html=True)
-            if st.button("📝  Sign Up", key="tab_signup_btn"):
-                st.session_state.auth_tab = "signup"
-                st.rerun()
-            st.markdown("</div>", unsafe_allow_html=True)
-
-        st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
-
-        # ── LOGIN ──────────────────────────────────────────────────────────────
-        if is_login:
-            st.html("""
-            <div style="margin-bottom:18px">
-                <div class="auth-form-title">Welcome back 👋</div>
-                <div class="auth-form-sub">Sign in to your RiskOra dashboard</div>
+        <div class="team-card">
+            <div class="team-ring team-ring-p">
+                <img src="https://i.ibb.co/nKKgSGP/Whats-App-Image-2026-05-10-at-10-27-51-PM-2.jpg" class="team-img" alt="Kevin Mathews"/>
             </div>
-            """)
+            <div class="team-name">Kevin Mathews</div>
+            <div class="team-role-lbl">Developer</div>
+        </div>
+        <div class="team-card">
+            <div class="team-ring team-ring-t">
+                <img src="https://i.ibb.co/m511tbbW/Whats-App-Image-2026-05-10-at-10-27-51-PM-1.jpg" class="team-img" alt="Devika S Prasad"/>
+            </div>
+            <div class="team-name">Devika S Prasad</div>
+            <div class="team-role-lbl">Developer</div>
+        </div>
+    </div>
+</div>
+""")
 
-            with st.form("login_form"):
-                username  = st.text_input("Username", placeholder="Enter your username")
-                password  = st.text_input("Password", type="password", placeholder="Enter your password")
-                submitted = st.form_submit_button("Sign In  →")
+    # ── FOOTER CTA ────────────────────────────────────────────────────────────
+    st.html("""
+<div class="landing-footer">
+    <div style="font-size:28px;font-weight:800;color:#e2e8f0;margin-bottom:8px">Ready to get started?</div>
+    <div style="font-size:14px;color:#475569;margin-bottom:28px">Join banks and NBFCs already using RiskOra AI for smarter lending decisions.</div>
+</div>
+""")
 
-            if submitted:
-                if not username.strip() or not password.strip():
-                    st.error("Please enter both username and password.")
+    _, fc_col, _ = st.columns([3, 2, 3])
+    with fc_col:
+        if st.button("🚀  Create Free Account", key="footer_cta", use_container_width=True):
+            st.session_state.page = "auth"
+            st.session_state.auth_tab = "signup"
+            st.rerun()
+
+    st.html("""
+<div style="text-align:center;padding:24px 40px 32px">
+    <div style="font-size:12px;color:#1e293b">
+        © 2026 RiskOra AI · Built with Streamlit &amp; scikit-learn · All rights reserved
+    </div>
+</div>
+""")
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+# AUTH PAGE  —  centered glassmorphism card
+# ══════════════════════════════════════════════════════════════════════════════
+def show_auth():
+    st.markdown("""
+<style>
+[data-testid="stSidebar"]{display:none!important;}
+[data-testid="stSidebarCollapsedControl"]{display:none!important;}
+.block-container{padding-top:2rem!important;max-width:600px!important;margin:0 auto!important;}
+</style>""", unsafe_allow_html=True)
+
+    # Back to home
+    if st.button("← Back to Home", key="auth_back"):
+        st.session_state.page = "landing"
+        st.rerun()
+
+    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+    # Card header
+    st.html(f"""
+<div class="auth-center-card">
+    <div class="acc-logo-row">
+        <div class="acc-icon">🔮</div>
+        <div class="acc-name">{APP_SHORT}</div>
+        <div class="acc-sub">AI Credit Intelligence</div>
+    </div>
+    <div class="acc-divider"></div>
+</div>
+""")
+
+    # Tab toggle
+    ta, tb = st.columns(2, gap="small")
+    is_login  = st.session_state.auth_tab == "login"
+    is_signup = st.session_state.auth_tab == "signup"
+
+    with ta:
+        st.markdown(f'<div class="{"auth-tab-active" if is_login else "auth-tab-inactive"}">', unsafe_allow_html=True)
+        if st.button("🔑  Login", key="tab_login_btn"):
+            st.session_state.auth_tab = "login"
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with tb:
+        st.markdown(f'<div class="{"auth-tab-active" if is_signup else "auth-tab-inactive"}">', unsafe_allow_html=True)
+        if st.button("📝  Sign Up", key="tab_signup_btn"):
+            st.session_state.auth_tab = "signup"
+            st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
+
+    # ── LOGIN ──────────────────────────────────────────────────────────────────
+    if is_login:
+        st.html("""
+<div style="margin-bottom:18px">
+    <div class="acc-form-title">Welcome back 👋</div>
+    <div class="acc-form-sub">Sign in to your RiskOra dashboard</div>
+</div>
+""")
+        with st.form("login_form"):
+            username  = st.text_input("Username", placeholder="Enter your username")
+            password  = st.text_input("Password", type="password", placeholder="Enter your password")
+            submitted = st.form_submit_button("Sign In  →")
+
+        if submitted:
+            if not username.strip() or not password.strip():
+                st.error("Please enter both username and password.")
+            else:
+                with st.spinner("Authenticating…"):
+                    role = validate_login(username.strip(), password)
+                if role:
+                    st.session_state.logged_in = True
+                    st.session_state.role      = role
+                    st.session_state.username  = username.strip()
+                    st.rerun()
                 else:
-                    with st.spinner("Authenticating…"):
-                        role = validate_login(username.strip(), password)
-                    if role:
-                        st.session_state.logged_in = True
-                        st.session_state.role      = role
-                        st.session_state.username  = username.strip()
-                        st.rerun()
-                    else:
-                        st.error("Invalid credentials. Please try again.")
-
-            st.html("""
-            <div class="auth-secure-note">🔒 PBKDF2-SHA256 · 100,000 iterations · Never stored in plain text</div>
-            """)
-
-        # ── SIGN UP ────────────────────────────────────────────────────────────
-        else:
-            st.html("""
-            <div style="margin-bottom:18px">
-                <div class="auth-form-title">Create account 🚀</div>
-                <div class="auth-form-sub">Join RiskOra and start analyzing credit risk</div>
-            </div>
-            """)
-
-            new_user = st.text_input("Username", placeholder="Choose a username", key="su_user")
-            new_pass = st.text_input("Password", type="password", placeholder="Min 6 characters", key="su_pass")
-
-            if new_pass:
-                strength, pwd_label, pwd_color = _password_strength(new_pass)
-                dim  = "rgba(255,255,255,.08)"
-                segs = "".join(
-                    f'<div class="pwd-seg" style="background:{pwd_color if i <= strength - 1 else dim}"></div>'
-                    for i in range(4)
-                )
-                st.html(f"""
-                <div style="margin-top:-6px;margin-bottom:12px">
-                    <div class="pwd-bar-wrap">{segs}</div>
-                    <div style="font-size:11px;color:{pwd_color};margin-top:5px;font-weight:600">
-                        Strength: {pwd_label}
-                    </div>
-                </div>
-                """)
-
-            su_role = st.selectbox("Account Role", ["user", "admin"], key="su_role")
-
-            if st.button("Create Account  →", key="su_btn"):
-                if not new_user.strip() or not new_pass.strip():
-                    st.error("Username and password are required.")
-                elif len(new_pass) < 6:
-                    st.error("Password must be at least 6 characters.")
-                elif add_user(new_user.strip(), new_pass, su_role):
-                    st.success("✅ Account created! Click Login to sign in.")
-                else:
-                    st.error("That username is already taken.")
-
-            st.html("""
-            <div class="auth-secure-note">Your password is hashed and never stored in plain text.</div>
-            """)
+                    st.error("Invalid credentials. Please try again.")
 
         st.html("""
-        <div class="team-section">
-            <div class="team-label">⟡ &nbsp; BUILT BY &nbsp; ⟡</div>
-            <div class="team-row">
-                <div class="team-card">
-                    <div class="team-ring team-ring-c">
-                        <img src="https://i.ibb.co/WWf7yDdg/Whats-App-Image-2026-05-10-at-10-27-51-PM.jpg" class="team-img" alt="Mahitha J H" />
-                    </div>
-                    <div class="team-name">Mahitha J H</div>
-                    <div class="team-role-lbl">Developer</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-ring team-ring-p">
-                        <img src="https://i.ibb.co/nKKgSGP/Whats-App-Image-2026-05-10-at-10-27-51-PM-2.jpg" class="team-img" alt="Kevin Mathews" />
-                    </div>
-                    <div class="team-name">Kevin Mathews</div>
-                    <div class="team-role-lbl">Developer</div>
-                </div>
-                <div class="team-card">
-                    <div class="team-ring team-ring-t">
-                        <img src="https://i.ibb.co/m511tbbW/Whats-App-Image-2026-05-10-at-10-27-51-PM-1.jpg" class="team-img" alt="Devika S Prasad" />
-                    </div>
-                    <div class="team-name">Devika S Prasad</div>
-                    <div class="team-role-lbl">Developer</div>
-                </div>
-            </div>
-        </div>
-        """)
+<div class="acc-secure">🔒 PBKDF2-SHA256 · 100,000 iterations · Never stored in plain text</div>
+""")
+
+    # ── SIGN UP ────────────────────────────────────────────────────────────────
+    else:
+        st.html("""
+<div style="margin-bottom:18px">
+    <div class="acc-form-title">Create account 🚀</div>
+    <div class="acc-form-sub">Join RiskOra and start analyzing credit risk</div>
+</div>
+""")
+        new_user = st.text_input("Username", placeholder="Choose a username", key="su_user")
+        new_pass = st.text_input("Password", type="password", placeholder="Min 6 characters", key="su_pass")
+
+        if new_pass:
+            strength, pwd_label, pwd_color = _password_strength(new_pass)
+            dim  = "rgba(255,255,255,.08)"
+            segs = "".join(
+                f'<div class="pwd-seg" style="background:{pwd_color if i <= strength - 1 else dim}"></div>'
+                for i in range(4)
+            )
+            st.html(f"""
+<div style="margin-top:-6px;margin-bottom:12px">
+    <div class="pwd-bar-wrap">{segs}</div>
+    <div style="font-size:11px;color:{pwd_color};margin-top:5px;font-weight:600">Strength: {pwd_label}</div>
+</div>
+""")
+
+        su_role = st.selectbox("Account Role", ["user", "admin"], key="su_role")
+
+        if st.button("Create Account  →", key="su_btn"):
+            if not new_user.strip() or not new_pass.strip():
+                st.error("Username and password are required.")
+            elif len(new_pass) < 6:
+                st.error("Password must be at least 6 characters.")
+            elif add_user(new_user.strip(), new_pass, su_role):
+                st.success("✅ Account created! Click Login to sign in.")
+            else:
+                st.error("That username is already taken.")
+
+        st.html("""
+<div class="acc-secure">Your password is hashed and never stored in plain text.</div>
+""")
 
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -1921,7 +2257,10 @@ def show_support():
 _inject_css()
 
 if not st.session_state.logged_in:
-    show_auth_pages()
+    if st.session_state.get("page", "landing") == "landing":
+        show_landing()
+    else:
+        show_auth()
 else:
     role_cls = "sb-role-admin" if st.session_state.role == "admin" else "sb-role-user"
     st.sidebar.html(f"""
@@ -1939,10 +2278,11 @@ else:
     """)
 
     if st.sidebar.button("⏻  Logout"):
-        for k in ["logged_in","role","username","data","chat_history","auth_tab"]:
+        for k in ["logged_in","role","username","data","chat_history","auth_tab","page"]:
             st.session_state[k] = (False if k == "logged_in" else
                                    ([] if k == "chat_history" else
-                                    ("login" if k == "auth_tab" else None)))
+                                    ("login" if k == "auth_tab" else
+                                     ("landing" if k == "page" else None))))
         st.rerun()
 
     st.sidebar.markdown('<div class="sb-nav-label">Navigation</div>', unsafe_allow_html=True)
