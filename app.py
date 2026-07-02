@@ -846,23 +846,6 @@ label{{color:#94a3b8!important;font-size:13px!important;font-weight:500!importan
 .emi-card{{background:linear-gradient(135deg,rgba(147,51,234,.08),rgba(0,212,255,.06));border:1px solid rgba(147,51,234,.24);border-radius:20px;padding:24px;}}
 .divider{{height:1px;background:linear-gradient(90deg,transparent,rgba(147,51,234,.3),rgba(0,212,255,.2),transparent);margin:24px 0;}}
 
-/* ─── Team section ─── */
-.team-section{{margin-top:28px;padding-top:22px;border-top:1px solid rgba(147,51,234,.15);animation:fade-up .8s ease both;}}
-.team-label{{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:#334155;text-align:center;margin-bottom:20px;}}
-.team-row{{display:flex;gap:16px;justify-content:center;}}
-.team-card{{text-align:center;flex:1;max-width:130px;cursor:default;transition:transform .3s ease;}}
-.team-card:hover{{transform:translateY(-7px);}}
-.team-ring{{width:108px;height:108px;border-radius:50%;padding:3px;margin:0 auto 12px;transition:box-shadow .3s ease;}}
-.team-ring-c{{background:linear-gradient(135deg,#00d4ff,#6366f1);box-shadow:0 0 18px rgba(0,212,255,.3),0 0 36px rgba(99,102,241,.15);}}
-.team-ring-p{{background:linear-gradient(135deg,#9333ea,#ec4899);box-shadow:0 0 18px rgba(147,51,234,.3),0 0 36px rgba(236,72,153,.15);}}
-.team-ring-t{{background:linear-gradient(135deg,#14b8a6,#22c55e);box-shadow:0 0 18px rgba(20,184,166,.3),0 0 36px rgba(34,197,94,.15);}}
-.team-card:hover .team-ring-c{{box-shadow:0 0 34px rgba(0,212,255,.6),0 0 65px rgba(99,102,241,.35);}}
-.team-card:hover .team-ring-p{{box-shadow:0 0 34px rgba(147,51,234,.6),0 0 65px rgba(236,72,153,.35);}}
-.team-card:hover .team-ring-t{{box-shadow:0 0 34px rgba(20,184,166,.6),0 0 65px rgba(34,197,94,.35);}}
-.team-img{{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center top;display:block;}}
-.team-name{{font-size:12px;font-weight:700;color:#e2e8f0;margin-bottom:3px;letter-spacing:.3px;}}
-.team-role-lbl{{font-size:10px;color:#475569;letter-spacing:.5px;}}
-
 /* ─── Support page ─── */
 .sup-hero{{background:linear-gradient(135deg,rgba(147,51,234,.09),rgba(0,212,255,.06));border:1px solid rgba(147,51,234,.22);border-radius:24px;padding:32px 36px;margin-bottom:28px;position:relative;overflow:hidden;}}
 .sup-hero::before{{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#9333ea,#00d4ff,transparent);}}
@@ -1336,39 +1319,6 @@ def show_landing():
 
     st.markdown("<div style='height:64px'></div>", unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
-    # ── TEAM ──────────────────────────────────────────────────────────────────
-    st.html("""
-<div style="text-align:center;margin-bottom:40px;padding:0 24px">
-    <div class="landing-section-label">The Team</div>
-    <div class="landing-section-title">Built by passionate developers</div>
-</div>
-<div class="team-section" style="border-top:none;margin-top:0;padding-top:0">
-    <div class="team-row" style="justify-content:center;gap:40px">
-        <div class="team-card">
-            <div class="team-ring team-ring-c">
-                <img src="https://i.ibb.co/7sdd2w8/Whats-App-Image-2026-05-12-at-8-45-18-AM.jpg" class="team-img" alt="Mahitha J H"/>
-            </div>
-            <div class="team-name">Mahitha J H</div>
-            <div class="team-role-lbl">Developer</div>
-        </div>
-        <div class="team-card">
-            <div class="team-ring team-ring-p">
-                <img src="https://i.ibb.co/nKKgSGP/Whats-App-Image-2026-05-10-at-10-27-51-PM-2.jpg" class="team-img" alt="Kevin Mathews"/>
-            </div>
-            <div class="team-name">Kevin Mathews</div>
-            <div class="team-role-lbl">Developer</div>
-        </div>
-        <div class="team-card">
-            <div class="team-ring team-ring-t">
-                <img src="https://i.ibb.co/wZggyw0C/Whats-App-Image-2026-05-12-at-8-47-15-AM.jpg" class="team-img" alt="Devika S Prasad"/>
-            </div>
-            <div class="team-name">Devika S Prasad</div>
-            <div class="team-role-lbl">Developer</div>
-        </div>
-    </div>
-</div>
-""")
 
     # ── FOOTER CTA ────────────────────────────────────────────────────────────
     st.html("""
